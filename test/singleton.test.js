@@ -24,16 +24,25 @@ describe('Only one instance of singleton', () =>{
     });
 });
 describe('Only three instances of singleton', () =>{
+    test('prints message', () => {
+        let printer = new ThreePrinter();
+        let sendMessage = 'Bye bye world';
+        let completeMessage = sendMessage + ' printed by printer 1';
+        let printedMessage = printer.print(sendMessage);
+
+        expect(printedMessage).toBe(completeMessage);
+    });
+
     test('is an instance of Printer', () => {
-        let printer = new ThreePrinter(1);
+        let printer = new ThreePrinter();
 
         expect(printer instanceof ThreePrinter).toBeTruthy();
     });
-
+    
     test('are different objects', () => {
-        let printerOne = new ThreePrinter(1);
-        let printerTwo = new ThreePrinter(2);
-        let printerThree = new ThreePrinter(3);
+        let printerOne = new ThreePrinter();
+        let printerTwo = new ThreePrinter();
+        let printerThree = new ThreePrinter();
 
         expect(printerOne !== printerTwo).toBeTruthy();
         expect(printerOne !== printerThree).toBeTruthy();
@@ -41,32 +50,24 @@ describe('Only three instances of singleton', () =>{
     });
 
     test('printers iterate by turn', () => {
-        let printerOne = new ThreePrinter(1);
-        let printerTwo = new ThreePrinter(2);
-        let printerThree = new ThreePrinter(3);
-        let notPrinterFour = new ThreePrinter(1);
-        let notPrinterFive = new ThreePrinter(2);
-        let notPrinterSix = new ThreePrinter(3);
+        let printerOne = new ThreePrinter();
+        let printerTwo = new ThreePrinter();
+        let printerThree = new ThreePrinter();
+        let notPrinterFour = new ThreePrinter();
+        let notPrinterFive = new ThreePrinter();
+        let notPrinterSix = new ThreePrinter();
 
         expect(printerOne === notPrinterFour).toBeTruthy();
         expect(printerTwo === notPrinterFive).toBeTruthy();
         expect(printerThree === notPrinterSix).toBeTruthy();
     });
     test('only accept three printers', () => {
-        let printerOne = new ThreePrinter(1);
-        let printerTwo = new ThreePrinter(2);
-        let printerThree = new ThreePrinter(3);
-        let notPrinterFour = new ThreePrinter(4);
+        let printerOne = new ThreePrinter();
+        let printerTwo = new ThreePrinter();
+        let printerThree = new ThreePrinter();
+        let notPrinterFour = new ThreePrinter();
 
         expect(printerOne === notPrinterFour).toBeTruthy();
     });
 
-    test('prints message', () => {
-        let printer = new ThreePrinter(1);
-        let sendMessage = 'Bye bye world';
-        let completeMessage = sendMessage + ' printed by printer 1';
-        let printedMessage = printer.print(sendMessage);
-
-        expect(printedMessage).toBe(completeMessage);
-    });
 });

@@ -3,19 +3,21 @@
 const MAXIMUN_INSTANCES = 3;
 
 class ThreePrinter {
-    constructor(turn) {
+    constructor() {
         ThreePrinter.instances = ThreePrinter.instances || [];
-        this.actual(turn);
+        ThreePrinter.turn = ThreePrinter.turn || undefined;
+        this.turn = this.actual(ThreePrinter.turn);
+        ThreePrinter.turn = this.turn + 1;
         if (ThreePrinter.instances.length < MAXIMUN_INSTANCES ) {
             ThreePrinter.instances.push(this);
         }
         return ThreePrinter.instances[this.turn];
     }
     actual(turn) {
-        if(turn > 3){
-            this.turn = 0;
+        if(turn > 2 || turn == undefined){
+            return 0;
         }else{
-            this.turn = turn - 1;
+            return turn;
         }
     }
     print(message){
